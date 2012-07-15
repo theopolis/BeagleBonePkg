@@ -44,12 +44,13 @@ BeagleBoardGetRevision (
   UINT32 Revision;
 
   // Read GPIO 171, 172, 173
-  OldPinDir = MmioRead32 (GPIO6_BASE + GPIO_OE);
-  MmioWrite32(GPIO6_BASE + GPIO_OE, (OldPinDir | BIT11 | BIT12 | BIT13));
-  Revision = MmioRead32 (GPIO6_BASE + GPIO_DATAIN);
+  //OldPinDir = MmioRead32 (GPIO6_BASE + GPIO_OE);
+  //MmioWrite32(GPIO6_BASE + GPIO_OE, (OldPinDir | BIT11 | BIT12 | BIT13));
+  //Revision = MmioRead32 (GPIO6_BASE + GPIO_DATAIN);
   
   // Restore I/O settings
-  MmioWrite32 (GPIO6_BASE + GPIO_OE, OldPinDir);
+  //MmioWrite32 (GPIO6_BASE + GPIO_OE, OldPinDir);
+  Revision = 0;
   
   return (BEAGLEBOARD_REVISION)((Revision >> 11) & 0x7);
 }

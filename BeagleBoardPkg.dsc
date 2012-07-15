@@ -331,7 +331,7 @@
   gArmTokenSpaceGuid.PcdVFPEnabled|1
   
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x08000000
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x08000000 # 128MB, is actually 256MB
 
   # Size of the region used by UEFI in permanent memory (Reserved 16MB)
   gArmPlatformTokenSpaceGuid.PcdSystemMemoryUefiRegionSize|0x01000000
@@ -343,6 +343,7 @@
   gArmTokenSpaceGuid.PcdCpuResetAddress|0x80008000
   
   gEmbeddedTokenSpaceGuid.PcdTimerPeriod|100000
+  ### Todo: Should update the following
   gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterPeriodInNanoseconds|77
   gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterFrequencyInHz|13000000
   
@@ -446,7 +447,7 @@
   #
   # Nand Flash
   #
-  Omap35xxPkg/Flash/Flash.inf
+  # Omap35xxPkg/Flash/Flash.inf
 
   #
   # MMC/SD
@@ -465,7 +466,7 @@
   Omap35xxPkg/Gpio/Gpio.inf
   Omap35xxPkg/InterruptDxe/InterruptDxe.inf
   Omap35xxPkg/TimerDxe/TimerDxe.inf 
-  Omap35xxPkg/LcdGraphicsOutputDxe/LcdGraphicsOutputDxe.inf
+  # Omap35xxPkg/LcdGraphicsOutputDxe/LcdGraphicsOutputDxe.inf
 
   #
   # Power IC
