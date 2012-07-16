@@ -26,7 +26,7 @@
 ################################################################################
 
 
-[FD.BeagleBoard_EFI]
+[FD.BeagleBone_EFI]
 BaseAddress   = 0x80008000|gArmTokenSpaceGuid.PcdFdBaseAddress  #The base address of the FLASH Device.
 Size          = 0x00080000|gArmTokenSpaceGuid.PcdFdSize         #The size in bytes of the FLASH Device
 ErasePolarity = 1
@@ -118,31 +118,31 @@ READ_LOCK_STATUS   = TRUE
   #
   # Nand Flash
   #
-  ###INF Omap35xxPkg/Flash/Flash.inf
+  ###INF Am335xPkg/Flash/Flash.inf
 
   #
   # MMC/SD
   #
   INF EmbeddedPkg/Universal/MmcDxe/MmcDxe.inf
-  INF Omap35xxPkg/MmcHostDxe/MmcHostDxe.inf
+  INF Am335xPkg/MmcHostDxe/MmcHostDxe.inf
   
   #
   # I2C
   #
-  INF Omap35xxPkg/SmbusDxe/Smbus.inf
+  INF Am335xPkg/SmbusDxe/Smbus.inf
   
   #
   # SoC Drivers
   #
-  INF Omap35xxPkg/Gpio/Gpio.inf
-  INF Omap35xxPkg/InterruptDxe/InterruptDxe.inf
-  INF Omap35xxPkg/TimerDxe/TimerDxe.inf 
-  INF Omap35xxPkg/LcdGraphicsOutputDxe/LcdGraphicsOutputDxe.inf
+  INF Am335xPkg/Gpio/Gpio.inf
+  INF Am335xPkg/InterruptDxe/InterruptDxe.inf
+  INF Am335xPkg/TimerDxe/TimerDxe.inf 
+  INF Am335xPkg/LcdGraphicsOutputDxe/LcdGraphicsOutputDxe.inf
 
   #
   # Power IC
   #
-  INF Omap35xxPkg/TPS65950Dxe/TPS65950.inf
+  INF Am335xPkg/TPS65950Dxe/TPS65950.inf
 
   #
   # FAT filesystem + GPT/MBR partitioning
@@ -156,7 +156,7 @@ READ_LOCK_STATUS   = TRUE
   # USB Support
   #
 
-  INF Omap35xxPkg/PciEmulation/PciEmulation.inf
+  INF Am335xPkg/PciEmulation/PciEmulation.inf
 
   INF MdeModulePkg/Bus/Pci/EhciDxe/EhciDxe.inf
   INF MdeModulePkg/Bus/Usb/UsbBusDxe/UsbBusDxe.inf

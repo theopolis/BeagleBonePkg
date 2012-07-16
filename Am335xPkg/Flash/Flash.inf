@@ -14,7 +14,7 @@
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = NandFlash
-  FILE_GUID                      = 4d00ef14-c4e0-426b-81b7-30a00a14aad6
+  FILE_GUID                      = 950d8ba5-070f-40bd-b114-2a815c14934e
   MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
 
@@ -26,7 +26,7 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  Omap35xxPkg/Omap35xxPkg.dec
+  Am335xPkg/Am335xPkg.dec
 
 [LibraryClasses]
   PcdLib

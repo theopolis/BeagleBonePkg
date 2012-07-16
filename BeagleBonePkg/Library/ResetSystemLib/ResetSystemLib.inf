@@ -15,8 +15,8 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = BeagleBoardResetSystemLib
-  FILE_GUID                      = 781371a2-3fdd-41d4-96a1-7b34cbc9e895
+  BASE_NAME                      = BeagleBoneResetSystemLib
+  FILE_GUID                      = ba4200da-212c-4c7a-9811-a2f5dcacfa48
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = EfiResetSystemLib

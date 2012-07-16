@@ -15,8 +15,8 @@
 
 [Defines]
   DEC_SPECIFICATION              = 0x00010005
-  PACKAGE_NAME                   = BeagleBoardPkg
-  PACKAGE_GUID                   = 6eba6648-d853-4eb3-9761-528b82d5ab04
+  PACKAGE_NAME                   = BeagleBonePkg
+  PACKAGE_GUID                   = a2387613-4fae-4f10-a175-63673b583bb0
   PACKAGE_VERSION                = 0.1
 
 ################################################################################
@@ -32,5 +32,5 @@
   Include                        # Root include for the package
 
 [Guids.common]
-  gBeagleBoardTokenSpaceGuid    =  { 0x6834fe45, 0x4aee, 0x4fc6, { 0xbc, 0xb5, 0xff, 0x45, 0xb7, 0xa8, 0x71, 0xe2 } }
+  gBeagleBoneTokenSpaceGuid    =  { 0x09bf5bb0, 0x2f99, 0x4e52, {0x9b, 0xe6, 0xbe, 0xcb, 0xce, 0x48, 0x27, 0x66 } }
 

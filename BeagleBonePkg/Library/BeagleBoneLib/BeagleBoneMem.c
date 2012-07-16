@@ -18,7 +18,7 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/IoLib.h>
 
-#include <BeagleBoard.h>
+#include <BeagleBone.h>
 
 #define MAX_VIRTUAL_MEMORY_MAP_DESCRIPTORS          4
 

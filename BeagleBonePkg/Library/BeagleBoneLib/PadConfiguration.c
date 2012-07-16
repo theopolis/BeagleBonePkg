@@ -16,7 +16,7 @@
 #include <Library/IoLib.h>
 #include <Library/DebugLib.h>
 #include <Omap3530/Omap3530.h>
-#include <BeagleBoard.h>
+#include <BeagleBone.h>
 
 #define NUM_PINS_SHARED 232
 #define NUM_PINS_ABC 6

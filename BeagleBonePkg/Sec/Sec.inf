@@ -15,8 +15,8 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = BeagleBoardSec
-  FILE_GUID                      = d959e387-7b91-452c-90e0-a1dbac90ddb8
+  BASE_NAME                      = BeagleBoneSec
+  FILE_GUID                      = bfa7c136-90b4-45e8-acb1-86877b851fd3
   MODULE_TYPE                    = SEC
   VERSION_STRING                 = 1.0
 

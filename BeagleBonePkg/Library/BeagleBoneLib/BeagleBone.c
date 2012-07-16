@@ -18,11 +18,11 @@
 #include <Library/PcdLib.h>
 
 #include <Omap3530/Omap3530.h>
-#include <BeagleBoard.h>
+#include <BeagleBone.h>
 
 VOID
 PadConfiguration (
-  BEAGLEBOARD_REVISION Revision
+  BEAGLEBONE_REVISION Revision
   );
 
 VOID
@@ -35,7 +35,7 @@ ClockInit (
 
   @return Board revision
 **/
-BEAGLEBOARD_REVISION
+BEAGLEBONE_REVISION
 BeagleBoardGetRevision (
   VOID
   )
@@ -52,7 +52,7 @@ BeagleBoardGetRevision (
   //MmioWrite32 (GPIO6_BASE + GPIO_OE, OldPinDir);
   Revision = 0;
   
-  return (BEAGLEBOARD_REVISION)((Revision >> 11) & 0x7);
+  return (BEAGLEBONE_REVISION)((Revision >> 11) & 0x7);
 }
 
 /**
@@ -81,7 +81,7 @@ ArmPlatformInitialize (
   IN  UINTN                     MpId
   )
 {
-  BEAGLEBOARD_REVISION Revision;
+  BEAGLEBONE_REVISION Revision;
 
   Revision = BeagleBoardGetRevision();
 

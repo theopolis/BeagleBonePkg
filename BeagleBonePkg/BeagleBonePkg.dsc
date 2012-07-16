@@ -19,20 +19,20 @@
 #
 ################################################################################
 [Defines]
-  PLATFORM_NAME                  = BeagleBoardPkg
-  PLATFORM_GUID                  = 91fa6c28-33df-46ac-aee6-292d6811ea31
+  PLATFORM_NAME                  = BeagleBonePkg
+  PLATFORM_GUID                  = a2387613-4fae-4f10-a175-63673b583bb0
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
-  OUTPUT_DIRECTORY               = Build/BeagleBoard
+  OUTPUT_DIRECTORY               = Build/BeagleBone
   SUPPORTED_ARCHITECTURES        = ARM
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
-  FLASH_DEFINITION               = BeagleBoardPkg/BeagleBoardPkg.fdf
+  FLASH_DEFINITION               = BeagleBonePkg/BeagleBonePkg.fdf
 
 
 [LibraryClasses.common]
   ArmLib|ArmPkg/Library/ArmLib/ArmV7/ArmV7Lib.inf
-  ArmPlatformLib|BeagleBoardPkg/Library/BeagleBoardLib/BeagleBoardLib.inf
+  ArmPlatformLib|BeagleBonePkg/Library/BeagleBoneLib/BeagleBoneLib.inf
   ArmCpuLib|ArmPkg/Drivers/ArmCpuLib/ArmCortexA8Lib/ArmCortexA8Lib.inf
   
   HiiLib|MdeModulePkg/Library/UefiHiiLib/UefiHiiLib.inf
@@ -53,7 +53,7 @@
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
   BaseMemoryLib|ArmPkg/Library/BaseMemoryLibStm/BaseMemoryLibStm.inf
 
-  EfiResetSystemLib|BeagleBoardPkg/Library/ResetSystemLib/ResetSystemLib.inf
+  EfiResetSystemLib|BeagleBonePkg/Library/ResetSystemLib/ResetSystemLib.inf
   
   PciLib|MdePkg/Library/BasePciLibCf8/BasePciLibCf8.inf
   PerformanceLib|MdePkg/Library/BasePerformanceLibNull/BasePerformanceLibNull.inf
@@ -365,7 +365,7 @@
   #
   # ARM OS Loader
   #
-  # BeagleBoard machine type (OMAP3_BEAGLE = 1546) required for ARM Linux: 
+  # BeagleBone machine type (OMAP3_BEAGLE = 1546) required for ARM Linux: 
   gArmTokenSpaceGuid.PcdArmMachineType|1546 
 
 ################################################################################

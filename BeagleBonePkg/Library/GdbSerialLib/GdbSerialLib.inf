@@ -14,7 +14,7 @@
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = GdbSerialLib
-  FILE_GUID                      = E2423349-EF5D-439B-95F5-8B8D8E3B443F
+  FILE_GUID                      = d5c8eb40-f564-4248-949a-94b9de677aca
   MODULE_TYPE                    = UEFI_DRIVER
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = GdbSerialLib
