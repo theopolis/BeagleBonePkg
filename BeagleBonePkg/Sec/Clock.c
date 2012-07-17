@@ -15,7 +15,7 @@
 #include <Library/IoLib.h>
 #include <Library/DebugLib.h>
 
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 
 VOID
 ClockInit (

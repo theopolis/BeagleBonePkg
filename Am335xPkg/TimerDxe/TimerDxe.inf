@@ -15,7 +15,7 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = BeagleBoardTimerDxe
+  BASE_NAME                      = BeagleBoneTimerDxe
   FILE_GUID                      = 6ddbf08b-cfc9-43cc-9e81-0784ba312ca0
   MODULE_TYPE                    = DXE_DRIVER
   VERSION_STRING                 = 1.0
@@ -26,7 +26,7 @@
   Timer.c
 
 [Packages]
-  Omap35xxPkg/Omap35xxPkg.dec
+  Am335xPkg/Am335xPkg.dec
   MdePkg/MdePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec

@@ -31,7 +31,7 @@
 [LibraryClasses]
   IoLib
   ArmLib
-#  OmapLib
+  OmapLib
   MemoryAllocationLib
 
 [Sources.common]

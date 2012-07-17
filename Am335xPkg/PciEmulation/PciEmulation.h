@@ -40,7 +40,7 @@
 #include <IndustryStandard/Pci22.h>
 #include <IndustryStandard/Acpi.h>
 
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 
 
 

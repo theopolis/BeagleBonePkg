@@ -15,34 +15,34 @@
 #ifndef __OMAP3530TIMER_H__
 #define __OMAP3530TIMER_H__
 
-#define GPTIMER1_BASE   (0x48313000)
-#define GPTIMER2_BASE   (0x49032000)
-#define GPTIMER3_BASE   (0x49034000)
-#define GPTIMER4_BASE   (0x49036000)
-#define GPTIMER5_BASE   (0x49038000)
-#define GPTIMER6_BASE   (0x4903A000)
-#define GPTIMER7_BASE   (0x4903C000)
-#define GPTIMER8_BASE   (0x4903E000)
+#define GPTIMER1_BASE   (0x4802C000)
+#define GPTIMER2_BASE   (0x4802E000)
+#define GPTIMER3_BASE   (0x48040000)
+#define GPTIMER4_BASE   (0x48042000)
+#define GPTIMER5_BASE   (0x48044000)
+#define GPTIMER6_BASE   (0x48046000)
+#define GPTIMER7_BASE   (0x48048000)
+#define GPTIMER8_BASE   (0x4804A000)
 #define GPTIMER9_BASE   (0x49040000)
 #define GPTIMER10_BASE  (0x48086000)
 #define GPTIMER11_BASE  (0x48088000)
 #define GPTIMER12_BASE  (0x48304000)
 #define WDTIMER2_BASE   (0x48314000)
 
-#define GPTIMER_TIOCP_CFG (0x0010)
-#define GPTIMER_TISTAT    (0x0014)
-#define GPTIMER_TISR      (0x0018)
-#define GPTIMER_TIER      (0x001C)
-#define GPTIMER_TWER      (0x0020)
-#define GPTIMER_TCLR      (0x0024)
-#define GPTIMER_TCRR      (0x0028)
-#define GPTIMER_TLDR      (0x002C)
-#define GPTIMER_TTGR      (0x0030)
-#define GPTIMER_TWPS      (0x0034)
-#define GPTIMER_TMAR      (0x0038)
-#define GPTIMER_TCAR1     (0x003C)
-#define GPTIMER_TSICR     (0x0040)
-#define GPTIMER_TCAR2     (0x0044)
+#define GPTIMER_TIOCP_CFG (0x0010) //10
+#define GPTIMER_TISTAT    (0x0028) //28
+#define GPTIMER_TISR      (0x002c) //2c
+#define GPTIMER_TIER      (0x0020) //20
+#define GPTIMER_TWER      (0x0034) //34
+#define GPTIMER_TCLR      (0x0038) //38
+#define GPTIMER_TCRR      (0x003C) //3c
+#define GPTIMER_TLDR      (0x0040) //40
+#define GPTIMER_TTGR      (0x0044) //44
+#define GPTIMER_TWPS      (0x0048) //48
+#define GPTIMER_TMAR      (0x004C) //4c
+#define GPTIMER_TCAR1     (0x0050) //50
+#define GPTIMER_TSICR     (0x0054) //54
+#define GPTIMER_TCAR2     (0x0058) //58
 #define GPTIMER_TPIR      (0x0048)
 #define GPTIMER_TNIR      (0x004C)
 #define GPTIMER_TCVR      (0x0050)

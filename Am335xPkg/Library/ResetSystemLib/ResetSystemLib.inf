@@ -15,7 +15,7 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = BeagleBoardResetSystemLib
+  BASE_NAME                      = BeagleBoneResetSystemLib
   FILE_GUID                      = 781371a2-3fdd-41d4-96a1-7b34cbc9e895
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
@@ -26,7 +26,7 @@
   ResetSystemLib.c
 
 [Packages]
-  Omap35xxPkg/Omap35xxPkg.dec
+  Am335xPkg/Am335xPkg.dec
   ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec

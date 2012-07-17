@@ -82,10 +82,10 @@
   CpuExceptionHandlerLib|MdeModulePkg/Library/CpuExceptionHandlerLibNull/CpuExceptionHandlerLibNull.inf
   PrePiLib|EmbeddedPkg/Library/PrePiLib/PrePiLib.inf
   
-  SerialPortLib|Omap35xxPkg/Library/SerialPortLib/SerialPortLib.inf
+  SerialPortLib|Am335xPkg/Library/SerialPortLib/SerialPortLib.inf
   SemihostLib|ArmPkg/Library/SemihostLib/SemihostLib.inf
   
-  RealTimeClockLib|Omap35xxPkg/Library/RealTimeClockLib/RealTimeClockLib.inf
+  RealTimeClockLib|Am335xPkg/Library/RealTimeClockLib/RealTimeClockLib.inf
 
   IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
   
@@ -113,13 +113,13 @@
 
   CpuLib|MdePkg/Library/BaseCpuLib/BaseCpuLib.inf
 
-  TimerLib|Omap35xxPkg/Library/Omap35xxTimerLib/Omap35xxTimerLib.inf  
-  OmapLib|Omap35xxPkg/Library/OmapLib/OmapLib.inf
-  OmapDmaLib|Omap35xxPkg/Library/OmapDmaLib/OmapDmaLib.inf
+  TimerLib|Am335xPkg/Library/Am335xTimerLib/Am335xTimerLib.inf  
+  OmapLib|Am335xPkg/Library/OmapLib/OmapLib.inf
+  OmapDmaLib|Am335xPkg/Library/OmapDmaLib/OmapDmaLib.inf
   EblNetworkLib|EmbeddedPkg/Library/EblNetworkLib/EblNetworkLib.inf
-  DebugAgentTimerLib|Omap35xxPkg/Library/DebugAgentTimerLib/DebugAgentTimerLib.inf
+  DebugAgentTimerLib|Am335xPkg/Library/DebugAgentTimerLib/DebugAgentTimerLib.inf
 
-  GdbSerialLib|Omap35xxPkg/Library/GdbSerialLib/GdbSerialLib.inf
+  GdbSerialLib|Am335xPkg/Library/GdbSerialLib/GdbSerialLib.inf
   ArmDisassemblerLib|ArmPkg/Library/ArmDisassemblerLib/ArmDisassemblerLib.inf
   DebugAgentLib|MdeModulePkg/Library/DebugAgentLibNull/DebugAgentLibNull.inf
   DmaLib|ArmPkg/Library/ArmDmaLib/ArmDmaLib.inf
@@ -432,7 +432,7 @@
   #
   # USB
   #
-  Omap35xxPkg/PciEmulation/PciEmulation.inf
+  Am335xPkg/PciEmulation/PciEmulation.inf
 
   #NOTE: Open source EHCI stack doesn't work on Beagleboard.
   #NOTE: UsbBus and UsbMassStorage don't work using iPhone SDK tool chain.
@@ -447,31 +447,31 @@
   #
   # Nand Flash
   #
-  # Omap35xxPkg/Flash/Flash.inf
+  # Am335xPkg/Flash/Flash.inf
 
   #
   # MMC/SD
   #
   EmbeddedPkg/Universal/MmcDxe/MmcDxe.inf
-  Omap35xxPkg/MmcHostDxe/MmcHostDxe.inf
+  Am335xPkg/MmcHostDxe/MmcHostDxe.inf
   
   #
   # I2C
   #
-  Omap35xxPkg/SmbusDxe/Smbus.inf
+  Am335xPkg/SmbusDxe/Smbus.inf
   
   #
   # SoC Drivers
   #
-  Omap35xxPkg/Gpio/Gpio.inf
-  Omap35xxPkg/InterruptDxe/InterruptDxe.inf
-  Omap35xxPkg/TimerDxe/TimerDxe.inf 
-  # Omap35xxPkg/LcdGraphicsOutputDxe/LcdGraphicsOutputDxe.inf
+  Am335xPkg/Gpio/Gpio.inf
+  Am335xPkg/InterruptDxe/InterruptDxe.inf
+  Am335xPkg/TimerDxe/TimerDxe.inf 
+  # Am335xPkg/LcdGraphicsOutputDxe/LcdGraphicsOutputDxe.inf
 
   #
   # Power IC
   #
-  Omap35xxPkg/TPS65950Dxe/TPS65950.inf
+  Am335xPkg/TPS65950Dxe/TPS65950.inf
   
   #
   # Application

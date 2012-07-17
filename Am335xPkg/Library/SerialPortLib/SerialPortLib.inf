@@ -15,7 +15,7 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = BeagleBoardSerialPortLib
+  BASE_NAME                      = BeagleBoneSerialPortLib
   FILE_GUID                      = 97546cbd-c0ff-4c48-ab0b-e4f58862acd3
   MODULE_TYPE                    = PEIM
   VERSION_STRING                 = 1.0
@@ -36,7 +36,7 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  Omap35xxPkg/Omap35xxPkg.dec
+  Am335xPkg/Am335xPkg.dec
   
 [FixedPcd]
   gOmap35xxTokenSpaceGuid.PcdOmap35xxConsoleUart

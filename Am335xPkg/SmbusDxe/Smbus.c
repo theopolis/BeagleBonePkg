@@ -13,7 +13,7 @@
 **/
 
 #include <Uefi.h>
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 
 #include <Library/DebugLib.h>
 #include <Library/IoLib.h>

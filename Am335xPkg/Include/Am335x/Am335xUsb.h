@@ -12,8 +12,8 @@
 
 **/
 
-#ifndef __OMAP3530USB_H__
-#define __OMAP3530USB_H__
+#ifndef __AM335XUSB_H__
+#define __AM335XUSB_H__
 
 #define USB_BASE            (0x48060000)
 
@@ -42,7 +42,7 @@
 
 #define UHH_SYSSTATUS_RESETDONE                (BIT0 | BIT1 | BIT2)
 
-#endif // __OMAP3530USB_H__
+#endif // __AM335XUSB_H__
 
 
 

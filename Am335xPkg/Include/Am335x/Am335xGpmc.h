@@ -12,10 +12,10 @@
 
 **/
 
-#ifndef __OMAP3530GPMC_H__
-#define __OMAP3530GPMC_H__
+#ifndef __AM335XGPMC_H__
+#define __AM335XGPMC_H__
 
-#define GPMC_BASE             (0x6E000000)
+#define GPMC_BASE             (0x50000000)
 
 //GPMC NAND definitions.
 #define GPMC_SYSCONFIG        (GPMC_BASE + 0x10)
@@ -104,4 +104,4 @@
 #define GPMC_ECC8_RESULT      (GPMC_BASE + 0x21C)
 #define GPMC_ECC9_RESULT      (GPMC_BASE + 0x220)
 
-#endif //__OMAP3530GPMC_H__
+#endif //__AM335XGPMC_H__

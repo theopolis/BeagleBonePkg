@@ -26,7 +26,7 @@
 
 #include <Ppi/GuidedSectionExtraction.h>
 #include <Guid/LzmaDecompress.h>
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 
 #include "LzmaDecompress.h"
 

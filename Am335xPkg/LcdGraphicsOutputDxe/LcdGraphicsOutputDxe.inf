@@ -28,7 +28,7 @@
   MdeModulePkg/MdeModulePkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  Omap35xxPkg/Omap35xxPkg.dec
+  Am335xPkg/Am335xPkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
 
 [LibraryClasses]

@@ -29,7 +29,7 @@
   MdePkg/MdePkg.dec
   ArmPkg/ArmPkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  Omap35xxPkg/Omap35xxPkg.dec
+  Am335xPkg/Am335xPkg.dec
 
 [Pcd.common]
   gArmTokenSpaceGuid.PcdCpuResetAddress

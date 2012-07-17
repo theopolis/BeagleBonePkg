@@ -26,7 +26,7 @@
 
 #include <Guid/GlobalVariable.h>
 
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 #include <TPS65950.h>
 
 typedef struct {

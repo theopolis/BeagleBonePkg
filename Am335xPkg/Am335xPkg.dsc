@@ -19,11 +19,11 @@
 #
 ################################################################################
 [Defines]
-  PLATFORM_NAME                  = Omap35xxPkg
+  PLATFORM_NAME                  = Am335xPkg
   PLATFORM_GUID                  = D196A631-B7B7-4953-A3EE-0F773CBABF20
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
-  OUTPUT_DIRECTORY               = Build/Omap35xxPkg
+  OUTPUT_DIRECTORY               = Build/Am335xPkg
   SUPPORTED_ARCHITECTURES        = ARM
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
@@ -49,8 +49,8 @@
   RealTimeClockLib|EmbeddedPkg/Library/TemplateRealTimeClockLib/TemplateRealTimeClockLib.inf
 
   IoLib|MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
-  OmapLib|Omap35xxPkg/Library/OmapLib/OmapLib.inf
-  OmapDmaLib|Omap35xxPkg/Library/OmapDmaLib/OmapDmaLib.inf
+  OmapLib|Am335xPkg/Library/OmapLib/OmapLib.inf
+  OmapDmaLib|Am335xPkg/Library/OmapDmaLib/OmapDmaLib.inf
   
   MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
   UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
@@ -148,11 +148,11 @@
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x80000000
   gArmTokenSpaceGuid.PcdCpuResetAddress|0x80008000
   
-  gOmap35xxTokenSpaceGuid.PcdOmap35xxGpmcOffset|0x6E000000
-  gOmap35xxTokenSpaceGuid.PcdOmap35xxMMCHS1Base|0x4809C000
+  gOmap35xxTokenSpaceGuid.PcdOmap35xxGpmcOffset|0x50000000
+  gOmap35xxTokenSpaceGuid.PcdOmap35xxMMCHS1Base|0x48060100
 
   # Console  
-  gOmap35xxTokenSpaceGuid.PcdOmap35xxConsoleUart|3
+  gOmap35xxTokenSpaceGuid.PcdOmap35xxConsoleUart|0
   
   # Timers
   gOmap35xxTokenSpaceGuid.PcdOmap35xxArchTimer|3
@@ -172,17 +172,17 @@
 #
 ################################################################################
 [Components.common]
-  Omap35xxPkg/Library/Omap35xxTimerLib/Omap35xxTimerLib.inf  
-  Omap35xxPkg/Library/OmapLib/OmapLib.inf
-  Omap35xxPkg/Library/OmapDmaLib/OmapDmaLib.inf
+  Am335xPkg/Library/Am335xTimerLib/Am335xTimerLib.inf  
+  Am335xPkg/Library/OmapLib/OmapLib.inf
+  Am335xPkg/Library/OmapDmaLib/OmapDmaLib.inf
   
-  Omap35xxPkg/Flash/Flash.inf
-  Omap35xxPkg/MMCHSDxe/MMCHS.inf
-  Omap35xxPkg/SmbusDxe/Smbus.inf
-  Omap35xxPkg/Gpio/Gpio.inf
-  Omap35xxPkg/InterruptDxe/InterruptDxe.inf
-  Omap35xxPkg/TimerDxe/TimerDxe.inf 
-  Omap35xxPkg/TPS65950Dxe/TPS65950.inf
+  Am335xPkg/Flash/Flash.inf
+  Am335xPkg/MMCHSDxe/MMCHS.inf
+  Am335xPkg/SmbusDxe/Smbus.inf
+  Am335xPkg/Gpio/Gpio.inf
+  Am335xPkg/InterruptDxe/InterruptDxe.inf
+  Am335xPkg/TimerDxe/TimerDxe.inf 
+  Am335xPkg/TPS65950Dxe/TPS65950.inf
   
   
 

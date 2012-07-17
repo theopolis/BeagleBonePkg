@@ -19,7 +19,7 @@
 #include <Library/ArmLib.h>
 #include <Library/PcdLib.h>
 
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 
 
 volatile UINT32 gVector;

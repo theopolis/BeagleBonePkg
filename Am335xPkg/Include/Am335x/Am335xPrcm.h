@@ -12,9 +12,12 @@
 
 **/
 
-#ifndef __OMAP3530PRCM_H__
-#define __OMAP3530PRCM_H__
+#ifndef __AM335XPRCM_H__
+#define __AM335XPRCM_H__
 
+/** WTF? **/
+
+#define PCRM_BASE (0x44E00000)
 #define CM_FCLKEN1_CORE   (0x48004A00)
 #define CM_FCLKEN3_CORE   (0x48004A08)
 #define CM_ICLKEN1_CORE   (0x48004A10)
@@ -36,8 +39,8 @@
 #define CM_CLKSEL_PER     (0x48005040)
 
 //Reset management definition
-#define PRM_RSTCTRL       (0x48307250)
-#define PRM_RSTST         (0x48307258)
+#define PRM_RSTCTRL       (PRCM_BASE + 0x0F00)
+#define PRM_RSTST         (PRCM_BASE + 0x0F00)
 
 //CORE clock
 #define CM_FCLKEN1_CORE_EN_I2C1_MASK    BIT15
@@ -161,5 +164,5 @@
 #define GLOBAL_SW_RST     BIT1
 #define GLOBAL_COLD_RST   (0x0UL << 0)
 
-#endif // __OMAP3530PRCM_H__
+#endif // __AM335XPRCM_H__
 

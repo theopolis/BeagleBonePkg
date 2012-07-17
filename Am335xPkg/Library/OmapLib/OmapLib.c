@@ -15,7 +15,7 @@
 #include <Base.h>
 #include <Library/DebugLib.h>
 #include <Library/OmapLib.h>
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 
 UINT32 
 GpioBase (
@@ -47,10 +47,6 @@ TimerBase (
   case  6: return GPTIMER6_BASE;
   case  7: return GPTIMER7_BASE;
   case  8: return GPTIMER8_BASE;
-  case  9: return GPTIMER9_BASE;
-  case 10: return GPTIMER10_BASE;
-  case 11: return GPTIMER11_BASE;
-  case 12: return GPTIMER12_BASE;
   default: return 0;
   }
 }

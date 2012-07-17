@@ -12,8 +12,8 @@
 
 **/
 
-#ifndef __OMAP3530DMA_H__
-#define __OMAP3530DMA_H__
+#ifndef __AM335XDMA_H__
+#define __AM335XDMA_H__
 
 
 #define DMA4_MAX_CHANNEL 31

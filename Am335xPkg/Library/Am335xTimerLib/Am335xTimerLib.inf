@@ -19,7 +19,7 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = BeagleBoardTimerLib
+  BASE_NAME                      = BeagleBoneTimerLib
   FILE_GUID                      = fe1d7183-9abb-42ce-9a3b-36d7c6a8959f
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
@@ -29,7 +29,7 @@
   TimerLib.c
 
 [Packages]
-  Omap35xxPkg/Omap35xxPkg.dec
+  Am335xPkg/Am335xPkg.dec
   MdePkg/MdePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
 

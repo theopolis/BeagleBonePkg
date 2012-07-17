@@ -16,7 +16,7 @@
 
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = BeagleBoardEblCmdLib
+  BASE_NAME                      = BeagleBoneEblCmdLib
   FILE_GUID                      = ea62bdc3-1063-425f-8851-98cb47f213a8
   MODULE_TYPE                    = UEFI_DRIVER
   VERSION_STRING                 = 1.0

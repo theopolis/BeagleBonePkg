@@ -12,15 +12,50 @@
 
 **/
 
+/** PAY ATTENTION: TI81XX
+#define SRAM0_START			0x402F0400
+#define UART0_BASE			0x44E09000
+#define UART1_BASE			0x48022000
+#define UART2_BASE			0x48024000
+#define UART3_BASE			0x481A6000
+#define DM_TIMER0_BASE			0x4802C000
+#define DM_TIMER1_BASE			0x4802E000
+#define DM_TIMER2_BASE			0x48040000
+#define DM_TIMER3_BASE			0x48042000
+#define DM_TIMER4_BASE			0x48044000
+#define DM_TIMER5_BASE			0x48046000
+#define DM_TIMER6_BASE			0x48048000
+#define DM_TIMER7_BASE			0x4804A000
+#define GPIO2_BASE			0x481AC000
+#define ELM_BASE			0x48080000
+#define WDT_BASE			0x44E35000
+#define CTRL_BASE			0x44E10000
+#define PRCM_BASE			0x44E00000
+#define EMIF4_0_CFG_BASE		0x4C000000
+#define EMIF4_1_CFG_BASE		0x4D000000
+#define DMM_BASE			0x4E000000
+#define GPMC_BASE			0x50000000
+#define DDRPHY_0_CONFIG_BASE		(CTRL_BASE + 0x1400)
+#define DDRPHY_CONFIG_BASE		DDRPHY_0_CONFIG_BASE
+#define AM335X_CPSW_BASE               0x4A100000
+#define AM335X_CPSW_MDIO_BASE          0x4A101000
+#define AM335X_RTC_BASE			0x44E3E000
+# define OMAP_HSMMC1_BASE		0x48060100
+# define OMAP_HSMMC2_BASE		0x481D8100
+ */
+
+
 #include <PiPei.h>
 #include <Library/IoLib.h>
 #include <Library/DebugLib.h>
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 #include <BeagleBone.h>
 
+/**
 #define NUM_PINS_SHARED 232
 #define NUM_PINS_ABC 6
 #define NUM_PINS_XM 12
+**/
 
 struct pad_signals {
 	int gpmc_ad0;
@@ -231,269 +266,181 @@ struct pad_signals {
 	int vrefn;
 };
 
-struct module_pin_mux {
-	short reg_offset;
-	unsigned char val;
-};
-
-struct evm_pin_mux {
-	struct module_pin_mux *mod_pin_mux;
-	unsigned short profile;
-/*
-* If the device is required on both baseboard & daughter board (ex i2c),
-* specify DEV_ON_BASEBOARD
-*/
-#define DEV_ON_BASEBOARD       0
-#define DEV_ON_DGHTR_BRD       1
-	unsigned short device_on;
-};
-
 #define PAD_CTRL_BASE	0x800
-#define OFFSET(x)	(unsigned int) (&((struct pad_signals *) \
-				(PAD_CTRL_BASE))->x)
+#define OFFSET(x)	(unsigned int) (&((struct pad_signals *) (PAD_CTRL_BASE))->x + CTRL_BASE)
 
 PAD_CONFIGURATION PadConfigurationTableBone[] = {
-//  Pin						MuxMode,  PullConfig,    InputEnable
-	{OFFSET(uart0_rxd), 	MUXMODE0, PULL_DISABLED, INPUT},
-	{OFFSET(uart0_txd),		MUXMODE0, PULL_DISABLED, OUTPUT},
+//  Pin							MuxMode,  PullConfig,    		InputEnable
+//  UART0
+	{OFFSET(uart0_rxd), 		MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(uart0_txd),			MUXMODE0, PULL_DOWN_SELECTED, 	OUTPUT},
+//  UART3
+	//{OFFSET(spi0_cs1), 			MUXMODE1, PULL_DOWN_SELECTED, 	INPUT},
+	//{OFFSET(ecap0_in_pwm0_out),	MUXMODE1, PULL_DOWN_SELECTED, 	OUTPUT},
+//  NAND
+	/**
+	{OFFSET(gpmc_ad0), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_ad1), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_ad2), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_ad3), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_ad4), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_ad5), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_ad6), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_ad7), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_wait0), 		MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_wpn), 			MUXMODE7, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(gpmc_csn0), 		MUXMODE0, PULL_DOWN_SELECTED, 	OUTPUT},
+	{OFFSET(gpmc_advn_ale), 	MUXMODE0, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(gpmc_oen_ren), 		MUXMODE0, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(gpmc_wen), 			MUXMODE0, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(gpmc_be0n_cle), 	MUXMODE0, PULL_DOWN_SELECTED,	OUTPUT},
+	**/
+//	I2C0
+	{OFFSET(i2c0_sda), 			MUXMODE0, PULL_DOWN_SELECTED, 	INPUT},	/* I2C_DATA */ /*SLEWCTRL*/
+	{OFFSET(i2c0_scl), 			MUXMODE0, PULL_DOWN_SELECTED, 	INPUT},	/* I2C_SCLK */ /*SLEWCTRL*/
+//	I2C1
+	{OFFSET(spi0_d1), 			MUXMODE2, PULL_DOWN_SELECTED, 	INPUT},	/* I2C_DATA */ /*SLEWCTRL*/
+	{OFFSET(spi0_cs0), 			MUXMODE2, PULL_DOWN_SELECTED, 	INPUT},	/* I2C_SCLK */ /*SLEWCTRL*/
+//	RGMII1
+/**
+	{OFFSET(mii1_txen), 		MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(mii1_rxdv), 		MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(mii1_txd3), 		MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(mii1_txd2), 		MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(mii1_txd1), 		MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(mii1_txd0), 		MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(mii1_txclk), 		MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(mii1_rxclk), 		MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(mii1_rxd3), 		MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(mii1_rxd2), 		MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(mii1_rxd1), 		MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(mii1_rxd0), 		MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(mdio_data), 		MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(mdio_clk), 			MUXMODE0, PULL_UP_SELECTED, 	OUTPUT},
+//	RGMII2
+	{OFFSET(gpmc_a0), 			MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a1), 			MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_a2), 			MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a3), 			MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a4), 			MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a5), 			MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a6), 			MUXMODE2, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a7), 			MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_a8), 			MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_a9), 			MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_a10), 			MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_a11), 			MUXMODE2, PULL_DISABLED,		INPUT},
+	{OFFSET(mdio_data), 		MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(mdio_clk), 			MUXMODE0, PULL_UP_SELECTED, 	OUTPUT},
+**/
+//	MII1
+	{OFFSET(mii1_rxerr), 		MUXMODE0, PULL_DISABLED,		INPUT},	/* MII1_RXERR */
+	{OFFSET(mii1_txen), 		MUXMODE0, PULL_DISABLED,		OUTPUT},/* MII1_TXEN */
+	{OFFSET(mii1_rxdv), 		MUXMODE0, PULL_DISABLED,		INPUT},	/* MII1_RXDV */
+	{OFFSET(mii1_txd3), 		MUXMODE0, PULL_DISABLED,		OUTPUT},/* MII1_TXD3 */
+	{OFFSET(mii1_txd2), 		MUXMODE0, PULL_DISABLED,		OUTPUT},/* MII1_TXD2 */
+	{OFFSET(mii1_txd1), 		MUXMODE0, PULL_DISABLED,		OUTPUT},/* MII1_TXD1 */
+	{OFFSET(mii1_txd0), 		MUXMODE0, PULL_DISABLED,		OUTPUT},/* MII1_TXD0 */
+	{OFFSET(mii1_txclk), 		MUXMODE0, PULL_DISABLED,		INPUT},	/* MII1_TXCLK */
+	{OFFSET(mii1_rxclk), 		MUXMODE0, PULL_DISABLED,		INPUT},	/* MII1_RXCLK */
+	{OFFSET(mii1_rxd3),			MUXMODE0, PULL_DISABLED,		INPUT},	/* MII1_RXD3 */
+	{OFFSET(mii1_rxd2), 		MUXMODE0, PULL_DISABLED,		INPUT},	/* MII1_RXD2 */
+	{OFFSET(mii1_rxd1), 		MUXMODE0, PULL_DISABLED,		INPUT},	/* MII1_RXD1 */
+	{OFFSET(mii1_rxd0), 		MUXMODE0, PULL_DISABLED,		INPUT},	/* MII1_RXD0 */
+	{OFFSET(mdio_data), 		MUXMODE0, PULL_UP_SELECTED,		INPUT}, /* MDIO_DATA */
+	{OFFSET(mdio_clk), 			MUXMODE0, PULL_UP_SELECTED, 	OUTPUT},/* MDIO_CLK */
+//	RMII1
+/**
+	{OFFSET(mii1_crs), 			MUXMODE1, PULL_DISABLED,		INPUT},
+	{OFFSET(mii1_rxerr), 		MUXMODE1, PULL_DISABLED,		INPUT},
+	{OFFSET(mii1_txen), 		MUXMODE1, PULL_DISABLED,		OUTPUT},
+	{OFFSET(mii1_txd1), 		MUXMODE1, PULL_DISABLED,		OUTPUT},
+	{OFFSET(mii1_txd0), 		MUXMODE1, PULL_DISABLED,		OUTPUT},
+	{OFFSET(mii1_rxd1), 		MUXMODE1, PULL_DISABLED,		INPUT},
+	{OFFSET(mii1_rxd0), 		MUXMODE1, PULL_DISABLED,		INPUT},
+	{OFFSET(mdio_data), 		MUXMODE0, PULL_UP_SELECTED, 	INPUT},
+	{OFFSET(mdio_clk), 			MUXMODE0, PULL_UP_SELECTED,		OUTPUT},
+	{OFFSET(rmii1_refclk), 		MUXMODE0, PULL_DISABLED,		INPUT},
+**/
+//	NOR
+/**
+	{OFFSET(lcd_data0), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data1), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data2), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data3), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data4), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data5), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data6), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data7), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(gpmc_a8), 			MUXMODE0, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a9), 			MUXMODE0, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a10), 			MUXMODE0, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a11), 			MUXMODE0, PULL_DISABLED,		OUTPUT},
+	{OFFSET(lcd_data8), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data9), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data10), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data11), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data12), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data13), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data14),		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(lcd_data15), 		MUXMODE1, PULL_DOWN_SELECTED,	OUTPUT},
+	{OFFSET(gpmc_a4), 			MUXMODE4, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a5), 			MUXMODE4, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_a6), 			MUXMODE4, PULL_DISABLED,		OUTPUT},
+	{OFFSET(gpmc_ad0), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad1), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad2), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad3), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad4), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad5), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad6), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad7), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad8), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad9), 			MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad10), 		MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad11), 		MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad12), 		MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad13), 		MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad14), 		MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_ad15), 		MUXMODE0, PULL_DISABLED,		INPUT},
+	{OFFSET(gpmc_csn0), 		MUXMODE0, PULL_UP_SELECTED,		OUTPUT},
+	{OFFSET(gpmc_oen_ren), 		MUXMODE0, PULL_UP_SELECTED,		OUTPUT},
+	{OFFSET(gpmc_wen),			MUXMODE0, PULL_UP_SELECTED,		OUTPUT},
+	{OFFSET(gpmc_wait0), 		MUXMODE0, PULL_UP_SELECTED,		INPUT},
+	{OFFSET(lcd_ac_bias_en), 	MUXMODE7, PULL_DOWN_SELECTED,	INPUT},
+**/
+//	MMC0
+	{OFFSET(mmc0_dat3), 		MUXMODE0, PULL_UP_SELECTED, 	INPUT},	/* MMC0_DAT3 */
+	{OFFSET(mmc0_dat2), 		MUXMODE0, PULL_UP_SELECTED, 	INPUT},	/* MMC0_DAT2 */
+	{OFFSET(mmc0_dat1), 		MUXMODE0, PULL_UP_SELECTED, 	INPUT},	/* MMC0_DAT1 */
+	{OFFSET(mmc0_dat0), 		MUXMODE0, PULL_UP_SELECTED, 	INPUT},	/* MMC0_DAT0 */
+	{OFFSET(mmc0_clk), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},	/* MMC0_CLK */
+	{OFFSET(mmc0_cmd), 			MUXMODE0, PULL_UP_SELECTED, 	INPUT},	/* MMC0_CMD */
+	{OFFSET(mcasp0_aclkr), 		MUXMODE4, PULL_DISABLED,		INPUT},	/* MMC0_WP */
+	{OFFSET(spi0_cs1), 			MUXMODE5, PULL_UP_SELECTED,		INPUT},	/* MMC0_CD */
+//	MMC1
+	{OFFSET(gpmc_ad3), 			MUXMODE1, PULL_UP_SELECTED,		INPUT},	/* MMC1_DAT3 */
+	{OFFSET(gpmc_ad2), 			MUXMODE1, PULL_UP_SELECTED,		INPUT},	/* MMC1_DAT2 */
+	{OFFSET(gpmc_ad1), 			MUXMODE1, PULL_UP_SELECTED,		INPUT},	/* MMC1_DAT1 */
+	{OFFSET(gpmc_ad0), 			MUXMODE1, PULL_UP_SELECTED,		INPUT},	/* MMC1_DAT0 */
+	{OFFSET(gpmc_csn1), 		MUXMODE2, PULL_UP_SELECTED,		INPUT},	/* MMC1_CLK */
+	{OFFSET(gpmc_csn2), 		MUXMODE2, PULL_UP_SELECTED,		INPUT},	/* MMC1_CMD */
+	{OFFSET(gpmc_csn0), 		MUXMODE7, PULL_UP_SELECTED,		INPUT},	/* MMC1_WP */
+	{OFFSET(gpmc_advn_ale),		MUXMODE7, PULL_UP_SELECTED,		INPUT},	/* MMC1_CD */
+//	SPI0
+	{OFFSET(spi0_sclk), 		MUXMODE0, PULL_DOWN_SELECTED, 	INPUT},	/*SPI0_SCLK */
+	{OFFSET(spi0_d0), 			MUXMODE0, PULL_DOWN_SELECTED | PULL_UP_SELECTED, INPUT}, /*SPI0_D0 */
+	{OFFSET(spi0_d1), 			MUXMODE0, PULL_DOWN_SELECTED, 	INPUT}, /*SPI0_D1 */
+	{OFFSET(spi0_cs0), 			MUXMODE0, PULL_DOWN_SELECTED | PULL_UP_SELECTED, INPUT},	/*SPI0_CS0 */
+//	SPI1
+	//{OFFSET(mcasp0_aclkx), 		MUXMODE3, PULL_DOWN_SELECTED, 	INPUT},	/*SPI0_SCLK */
+	//{OFFSET(mcasp0_fsx), 		MUXMODE3, PULL_DOWN_SELECTED | PULL_UP_SELECTED, INPUT}, /*SPI0_D0 */
+	//{OFFSET(mcasp0_axr0), 		MUXMODE3, PULL_DOWN_SELECTED, 	INPUT}, /*SPI0_D1 */
+	//{OFFSET(mcasp0_ahclkr), 	MUXMODE3, PULL_DOWN_SELECTED | PULL_UP_SELECTED, INPUT}, /*SPI0_CS0 */
+//	GPIO0_7
+	//{OFFSET(ecap0_in_pwm0_out), MUXMODE7, PULL_DOWN_SELECTED,	OUTPUT},	/* GPIO0_7 */
+	{-1},
 };
-
-PAD_CONFIGURATION PadConfigurationTableShared[] = {
-  //Pin,           MuxMode,    PullConfig,                      InputEnable
-  { SDRC_D0,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D1,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D2,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D3,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D4,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D5,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D6,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D7,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D8,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D9,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D10,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D11,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D12,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D13,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D14,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D15,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D16,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D17,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D18,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D19,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D20,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D21,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D22,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D23,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D24,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D25,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D26,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D27,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D28,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D29,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D30,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_D31,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_CLK,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_DQS0,     MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_CKE0,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { SDRC_CKE1,     MUXMODE7,   PULL_DISABLED,                INPUT  },
-  { SDRC_DQS1,     MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_DQS2,     MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { SDRC_DQS3,     MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_A1,       MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_A2,       MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_A3,       MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_A4,       MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_A5,       MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_A6,       MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_A7,       MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_A8,       MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_A9,       MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_A10,      MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_D0,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D1,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D2,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D3,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D4,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D5,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D6,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D7,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D8,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D9,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D10,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D11,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D12,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D13,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D14,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_D15,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_NCS0,     MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_NCS1,     MUXMODE0,   PULL_UP_SELECTED,             OUTPUT },
-  { GPMC_NCS2,     MUXMODE0,   PULL_UP_SELECTED,             OUTPUT },
-  { GPMC_NCS3,     MUXMODE0,   PULL_UP_SELECTED,             OUTPUT },
-  { GPMC_NCS4,     MUXMODE0,   PULL_UP_SELECTED,             OUTPUT },
-  { GPMC_NCS5,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_NCS6,     MUXMODE1,   PULL_DISABLED,                INPUT  },
-  { GPMC_NCS7,     MUXMODE1,   PULL_UP_SELECTED,             INPUT  },
-  { GPMC_CLK,      MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_NADV_ALE, MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_NOE,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_NWE,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_NBE0_CLE, MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { GPMC_NBE1,     MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_NWP,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { GPMC_WAIT0,    MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { GPMC_WAIT1,    MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { GPMC_WAIT2,    MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { GPMC_WAIT3,    MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { DSS_PCLK,      MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_HSYNC,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_PSYNC,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_ACBIAS,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA0,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA1,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA2,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA3,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA4,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA5,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA6,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA7,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA8,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA9,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA10,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA11,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA12,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA13,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA14,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA15,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA16,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { DSS_DATA17,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { CAM_HS,        MUXMODE0,   PULL_UP_SELECTED,             INPUT },
-  { CAM_VS,        MUXMODE0,   PULL_UP_SELECTED,             INPUT },
-  { CAM_XCLKA,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { CAM_PCLK,      MUXMODE0,   PULL_UP_SELECTED,             INPUT },
-  { CAM_FLD,       MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { CAM_D0,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D1,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D2,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D3,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D4,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D5,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D6,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D7,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D8,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D9,        MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D10,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_D11,       MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CAM_XCLKB,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { CAM_WEN,       MUXMODE4,   PULL_DISABLED,                INPUT  },
-  { CAM_STROBE,    MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { CSI2_DX0,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CSI2_DY0,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CSI2_DX1,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { CSI2_DY1,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { MCBSP2_FSX,    MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { MCBSP2_CLKX,   MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { MCBSP2_DR,     MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { MCBSP2_DX,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { MMC1_CLK,      MUXMODE0,   PULL_UP_SELECTED,             OUTPUT },
-  { MMC1_CMD,      MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MMC1_DAT0,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MMC1_DAT1,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MMC1_DAT2,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MMC1_DAT3,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MMC1_DAT4,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MMC1_DAT5,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MMC1_DAT6,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MMC1_DAT7,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_CLK,      MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_CMD,      MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_DAT0,     MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_DAT1,     MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_DAT2,     MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_DAT3,     MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_DAT4,     MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_DAT5,     MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_DAT6,     MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MMC2_DAT7,     MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MCBSP3_DX,     MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { MCBSP3_DR,     MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { MCBSP3_CLKX,   MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { MCBSP3_FSX,    MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { UART2_CTS,     MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { UART2_RTS,     MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { UART2_TX,      MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { UART2_RX,      MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { UART1_TX,      MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { UART1_RTS,     MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { UART1_CTS,     MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { UART1_RX,      MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { MCBSP4_CLKX,   MUXMODE1,   PULL_DISABLED,                INPUT  },
-  { MCBSP4_DR,     MUXMODE1,   PULL_DISABLED,                INPUT  },
-  { MCBSP4_DX,     MUXMODE1,   PULL_DISABLED,                INPUT  },
-  { MCBSP4_FSX,    MUXMODE1,   PULL_DISABLED,                INPUT  },
-  { MCBSP1_CLKR,   MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { MCBSP1_FSR,    MUXMODE4,   PULL_UP_SELECTED,             OUTPUT },
-  { MCBSP1_DX,     MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { MCBSP1_DR,     MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { MCBSP1_CLKS,   MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { MCBSP1_FSX,    MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { MCBSP1_CLKX,   MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { UART3_CTS_RCTX,MUXMODE0,   PULL_UP_SELECTED,                 INPUT  },
-  { UART3_RTS_SD,  MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { UART3_RX_IRRX, MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { UART3_TX_IRTX, MUXMODE0,   PULL_DISABLED,                OUTPUT },
-  { HSUSB0_CLK,    MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_STP,    MUXMODE0,   PULL_UP_SELECTED,             OUTPUT },
-  { HSUSB0_DIR,    MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_NXT,    MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_DATA0,  MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_DATA1,  MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_DATA2,  MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_DATA3,  MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_DATA4,  MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_DATA5,  MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_DATA6,  MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { HSUSB0_DATA7,  MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { I2C1_SCL,      MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { I2C1_SDA,      MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { I2C2_SCL,      MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { I2C2_SDA,      MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { I2C3_SCL,      MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { I2C3_SDA,      MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { HDQ_SIO,       MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { MCSPI1_CLK,    MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MCSPI1_SIMO,   MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { MCSPI1_SOMI,   MUXMODE0,   PULL_DISABLED,                INPUT  },
-  { MCSPI1_CS0,    MUXMODE0,   PULL_UP_SELECTED,                 INPUT  },
-  { MCSPI1_CS1,    MUXMODE0,   PULL_UP_SELECTED,                 OUTPUT },
-  { MCSPI1_CS2,    MUXMODE4,   PULL_DISABLED,                OUTPUT },
-  { MCSPI1_CS3,    MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { MCSPI2_CLK,    MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { MCSPI2_SIMO,   MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { MCSPI2_SOMI,   MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { MCSPI2_CS0,    MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { MCSPI2_CS1,    MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { SYS_NIRQ,      MUXMODE0,   PULL_UP_SELECTED,             INPUT  },
-  { SYS_CLKOUT2,   MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_CLK,       MUXMODE3,   PULL_UP_SELECTED,             OUTPUT },
-  { ETK_CTL,       MUXMODE3,   PULL_UP_SELECTED,             OUTPUT },
-  { ETK_D0,        MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D1,        MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D2,        MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D3,        MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D4,        MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D5,        MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D6,        MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D7,        MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D8,        MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D9,        MUXMODE4,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D10,       MUXMODE3,   PULL_UP_SELECTED,             OUTPUT },
-  { ETK_D11,       MUXMODE3,   PULL_UP_SELECTED,             OUTPUT },
-  { ETK_D12,       MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D13,       MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D14,       MUXMODE3,   PULL_UP_SELECTED,             INPUT  },
-  { ETK_D15,       MUXMODE3,   PULL_UP_SELECTED,             INPUT  }
-};
-
 
 VOID
 PadConfiguration (
@@ -502,10 +449,10 @@ PadConfiguration (
 {
   UINTN             Index;
   UINT16            PadConfiguration;
-  PAD_CONFIGURATION *BoardConfiguration;
-  UINTN             NumPinsToConfigure;
+  //PAD_CONFIGURATION *BoardConfiguration;
+  //UINTN             NumPinsToConfigure;
 
-  for (Index = 0; Index < NUM_PINS_SHARED; Index++) {
+  for (Index = 0; PadConfigurationTableBone[Index].Pin > -1; Index++) {
     // Set up Pad configuration for particular pin.
     PadConfiguration =  (PadConfigurationTableShared[Index].MuxMode << MUXMODE_OFFSET);
     PadConfiguration |= (PadConfigurationTableShared[Index].PullConfig << PULL_CONFIG_OFFSET);

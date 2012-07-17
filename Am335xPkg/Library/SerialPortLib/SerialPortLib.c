@@ -20,7 +20,7 @@
 #include <Library/PcdLib.h>
 #include <Library/IoLib.h>
 #include <Library/OmapLib.h>
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 
 /*
 

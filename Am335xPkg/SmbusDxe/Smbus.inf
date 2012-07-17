@@ -25,7 +25,7 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  Omap35xxPkg/Omap35xxPkg.dec
+  Am335xPkg/Am335xPkg.dec
 
 [LibraryClasses]
   PcdLib

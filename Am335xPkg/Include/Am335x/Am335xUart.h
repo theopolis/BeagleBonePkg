@@ -12,12 +12,12 @@
 
 **/
 
-#ifndef __OMAP3530UART_H__
-#define __OMAP3530UART_H__
+#ifndef __AM335XUART_H__
+#define __AM335XUART_H__
 
-#define UART1_BASE  (0x4806A000)
-#define UART2_BASE  (0x4806C000)
-#define UART3_BASE  (0x49020000)
+#define UART1_BASE  (0x44E09000)
+#define UART2_BASE  (0x48022000)
+#define UART3_BASE  (0x48024000)
 
 #define UART_DLL_REG  (0x0000)
 #define UART_RBR_REG  (0x0000)
@@ -51,4 +51,4 @@
 #define UART_MDR1_MODE_SELECT_DISABLE   (7UL)
 #define UART_MDR1_MODE_SELECT_UART_16X  (0UL)
 
-#endif // __OMAP3530UART_H__
+#endif // __AM335XUART_H__

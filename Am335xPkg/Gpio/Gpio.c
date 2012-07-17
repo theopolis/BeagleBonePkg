@@ -20,7 +20,7 @@
 
 #include <Protocol/EmbeddedGpio.h>
 
-#include <Omap3530/Omap3530.h>
+#include <Am335x/Am335x.h>
 
 EFI_STATUS
 Get (
