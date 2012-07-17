@@ -16,7 +16,7 @@
 #define __AM335XGPIO_H__
 
 //#define GPIO1_BASE (0x48310000)
-#define GPIO1_BASE (0x44E07000)
+#define GPIO1_BASE (0x48032000)
 //#define GPIO2_BASE (0x49050000)
 #define GPIO2_BASE (0x4804C000)
 //#define GPIO3_BASE (0x49052000)

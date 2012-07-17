@@ -25,7 +25,7 @@
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
-  Am335xPkg/Am335Pkg.dec
+  Am335xPkg/Am335xPkg.dec
   BeagleBonePkg/BeagleBonePkg.dec
 
 [LibraryClasses]

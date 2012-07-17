@@ -266,6 +266,7 @@ struct pad_signals {
 	int vrefn;
 };
 
+#define CTRL_BASE 0x44E10000
 #define PAD_CTRL_BASE	0x800
 #define OFFSET(x)	(unsigned int) (&((struct pad_signals *) (PAD_CTRL_BASE))->x + CTRL_BASE)
 
