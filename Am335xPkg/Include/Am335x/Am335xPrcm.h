@@ -17,7 +17,7 @@
 
 /** WTF? **/
 
-#define PCRM_BASE (0x44E00000)
+#define PRCM_BASE (0x44E00000)
 #define CM_FCLKEN1_CORE   (0x48004A00)
 #define CM_FCLKEN3_CORE   (0x48004A08)
 #define CM_ICLKEN1_CORE   (0x48004A10)

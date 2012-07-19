@@ -137,7 +137,7 @@ READ_LOCK_STATUS   = TRUE
   INF Am335xPkg/Gpio/Gpio.inf
   INF Am335xPkg/InterruptDxe/InterruptDxe.inf
   INF Am335xPkg/TimerDxe/TimerDxe.inf 
-  INF Am335xPkg/LcdGraphicsOutputDxe/LcdGraphicsOutputDxe.inf
+  # INF Am335xPkg/LcdGraphicsOutputDxe/LcdGraphicsOutputDxe.inf
 
   #
   # Power IC

@@ -413,11 +413,11 @@ PadConfiguration (
 
   for (Index = 0; PadConfigurationTableBone[Index].Pin > -1; Index++) {
     //Set up Pad configuration for particular pin.
-    PadConfiguration =  (PadConfigurationTable[Index].MuxMode << MUXMODE_OFFSET);
-    PadConfiguration |= (PadConfigurationTable[Index].PullConfig << PULL_CONFIG_OFFSET);
-    PadConfiguration |= (PadConfigurationTable[Index].InputEnable << INPUTENABLE_OFFSET);
+    PadConfiguration =  (PadConfigurationTableBone[Index].MuxMode << MUXMODE_OFFSET);
+    PadConfiguration |= (PadConfigurationTableBone[Index].PullConfig << PULL_CONFIG_OFFSET);
+    PadConfiguration |= (PadConfigurationTableBone[Index].InputEnable << INPUTENABLE_OFFSET);
 
     //Configure the pin with specific Pad configuration.
-    MmioWrite16(PadConfigurationTable[Index].Pin, PadConfiguration);
+    MmioWrite16(PadConfigurationTableBone[Index].Pin, PadConfiguration);
   }
 }

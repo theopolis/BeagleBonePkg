@@ -22,7 +22,7 @@
 
 VOID
 PadConfiguration (
-  BEAGLEBONE_REVISION Revision
+  BEAGLEBOARD_REVISION Revision
   );
 
 VOID
@@ -35,7 +35,7 @@ ClockInit (
 
   @return Board revision
 **/
-BEAGLEBONE_REVISION
+BEAGLEBOARD_REVISION
 BeagleBoardGetRevision (
   VOID
   )
@@ -52,7 +52,7 @@ BeagleBoardGetRevision (
   //MmioWrite32 (GPIO6_BASE + GPIO_OE, OldPinDir);
   Revision = 0;
   
-  return (BEAGLEBONE_REVISION)((Revision >> 11) & 0x7);
+  return (BEAGLEBOARD_REVISION)((Revision >> 11) & 0x7);
 }
 
 /**
@@ -81,7 +81,7 @@ ArmPlatformInitialize (
   IN  UINTN                     MpId
   )
 {
-  BEAGLEBONE_REVISION Revision;
+  BEAGLEBOARD_REVISION Revision;
 
   Revision = BeagleBoardGetRevision();
 
