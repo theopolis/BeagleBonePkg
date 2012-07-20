@@ -36,9 +36,9 @@
 
 [Sources.common]
   BeagleBone.c
-  BeagleBoneMem.c
-  PadConfiguration.c
-  Clock.c
+  #BeagleBoneMem.c
+  #PadConfiguration.c
+  #Clock.c
 
 [Protocols]
 

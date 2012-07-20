@@ -81,23 +81,23 @@ ArmPlatformInitialize (
   IN  UINTN                     MpId
   )
 {
-  BEAGLEBOARD_REVISION Revision;
+  //BEAGLEBOARD_REVISION Revision;
 
-  Revision = BeagleBoardGetRevision();
+  //Revision = BeagleBoardGetRevision();
 
   // Set up Pin muxing.
-  PadConfiguration (Revision);
+  //PadConfiguration (Revision);
 
   // Set up system clocking
-  ClockInit ();
+  //ClockInit ();
 
   // Turn off the functional clock for Timer 3
-  MmioAnd32 (CM_FCLKEN_PER, 0xFFFFFFFF ^ CM_ICLKEN_PER_EN_GPT3_ENABLE );
-  ArmDataSyncronizationBarrier ();
+  //MmioAnd32 (CM_FCLKEN_PER, 0xFFFFFFFF ^ CM_ICLKEN_PER_EN_GPT3_ENABLE );
+  //ArmDataSyncronizationBarrier ();
 
   // Clear IRQs
-  MmioWrite32 (INTCPS_CONTROL, INTCPS_CONTROL_NEWIRQAGR);
-  ArmDataSyncronizationBarrier ();
+  //MmioWrite32 (INTCPS_CONTROL, INTCPS_CONTROL_NEWIRQAGR);
+  //ArmDataSyncronizationBarrier ();
 
   return RETURN_SUCCESS;
 }
