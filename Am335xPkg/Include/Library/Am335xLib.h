@@ -12,8 +12,8 @@
 
 **/
 
-#ifndef __OMAPLIB_H__
-#define __OMAPLIB_H__
+#ifndef __AM335XLIB_H__
+#define __AM335XLIB_H__
 
 UINT32 
 EFIAPI
@@ -40,5 +40,5 @@ UartBase (
   );
 
 
-#endif // __OMAPLIB_H__
+#endif // __AM335XLIB_H__
 

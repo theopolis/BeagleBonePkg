@@ -38,7 +38,7 @@
 [LibraryClasses]
   BaseLib
   IoLib
-  OmapLib
+  Am335xLib
   ArmLib
 
 [Pcd]

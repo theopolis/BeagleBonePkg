@@ -19,7 +19,7 @@
 #include <Library/SerialPortLib.h>
 #include <Library/PcdLib.h>
 #include <Library/IoLib.h>
-#include <Library/OmapLib.h>
+#include <Library/Am335xLib.h>
 #include <Am335x/Am335x.h>
 
 /*

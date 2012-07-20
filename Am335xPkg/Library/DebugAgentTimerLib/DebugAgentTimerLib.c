@@ -15,7 +15,7 @@
 #include <Base.h>
 #include <Library/BaseLib.h>
 #include <Library/IoLib.h>
-#include <Library/OmapLib.h>
+#include <Library/Am335xLib.h>
 #include <Library/ArmLib.h>
 #include <Library/PcdLib.h>
 

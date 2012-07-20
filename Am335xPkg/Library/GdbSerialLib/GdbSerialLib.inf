@@ -34,7 +34,7 @@
 [LibraryClasses]
   DebugLib
   IoLib
-  OmapLib    
+  Am335xLib    
 
 [FixedPcd]
   gOmap35xxTokenSpaceGuid.PcdOmap35xxConsoleUart

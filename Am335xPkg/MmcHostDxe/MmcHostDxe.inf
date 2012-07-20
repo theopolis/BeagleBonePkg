@@ -33,8 +33,8 @@
   UefiDriverEntryPoint
   MemoryAllocationLib
   IoLib
-  OmapDmaLib
-  DmaLib
+#  OmapDmaLib
+#  DmaLib
 
 [Guids]
   

@@ -35,7 +35,7 @@
 
 [LibraryClasses]
   DebugLib
-  OmapLib
+  Am335xLib
   IoLib
 
 [Pcd]

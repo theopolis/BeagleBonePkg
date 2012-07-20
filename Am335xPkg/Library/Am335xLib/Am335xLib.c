@@ -14,7 +14,7 @@
 
 #include <Base.h>
 #include <Library/DebugLib.h>
-#include <Library/OmapLib.h>
+#include <Library/Am335xLib.h>
 #include <Am335x/Am335x.h>
 
 UINT32 
