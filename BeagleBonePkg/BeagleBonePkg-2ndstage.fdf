@@ -25,8 +25,8 @@
 ################################################################################
 
 [FD.ArmPlatform_EFI]
-BaseAddress   = 0xEC200000|gArmTokenSpaceGuid.PcdFdBaseAddress  # The base address of the Firmware in NOR Flash.
-Size          = 0x00200000|gArmTokenSpaceGuid.PcdFdSize         # The size in bytes of the FLASH Device
+BaseAddress   = 0x80008000|gArmTokenSpaceGuid.PcdFdBaseAddress  # The base address of the Firmware in NOR Flash.
+Size          = 0x00080000|gArmTokenSpaceGuid.PcdFdSize         # The size in bytes of the FLASH Device
 ErasePolarity = 1
 
 # This one is tricky, it must be: BlockSize * NumBlocks = Size
@@ -116,6 +116,17 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   INF FatPkg/EnhancedFatDxe/Fat.inf
   INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
+
+  #
+  # MMC/SD
+  #
+  INF EmbeddedPkg/Universal/MmcDxe/MmcDxe.inf
+  INF Am335xPkg/MmcHostDxe/MmcHostDxe.inf
+
+  #
+  # Power IC
+  #
+  INF Am335xPkg/TPS65950Dxe/TPS65950.inf
   
   #
   # UEFI application (Shell Embedded Boot Loader) 

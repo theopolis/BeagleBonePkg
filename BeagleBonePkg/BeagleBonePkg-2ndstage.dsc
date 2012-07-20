@@ -17,7 +17,7 @@
 ################################################################################
 [Defines]
   PLATFORM_NAME                  = BeagleBone
-  PLATFORM_GUID                  = 4fe82b83-9315-4ff3-8cc0-ab77ca93cb7f 
+  PLATFORM_GUID                  = 0981dd97-0908-4046-b29e-6f5c61b5b42c 
   PLATFORM_VERSION               = 0.1
   DSC_SPECIFICATION              = 0x00010005
   OUTPUT_DIRECTORY               = Build/$(PLATFORM_NAME)
@@ -362,6 +362,11 @@
   #
   EmbeddedPkg/Universal/MmcDxe/MmcDxe.inf
   Am335xPkg/MmcHostDxe/MmcHostDxe.inf 
+  
+  #
+  # Power IC
+  #
+  Am335xPkg/TPS65950Dxe/TPS65950.inf  
   
   #
   # Application
