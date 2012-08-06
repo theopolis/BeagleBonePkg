@@ -25,11 +25,6 @@ PadConfiguration (
   BEAGLEBOARD_REVISION Revision
   );
 
-VOID
-ClockInit (
-  VOID
-  );
-
 /**
   Detect board revision
 
@@ -98,6 +93,8 @@ ArmPlatformInitialize (
   // Clear IRQs
   //MmioWrite32 (INTCPS_CONTROL, INTCPS_CONTROL_NEWIRQAGR);
   //ArmDataSyncronizationBarrier ();
+  DEBUG ((EFI_D_ERROR, "UART Enabled\n"));
+
 
   return RETURN_SUCCESS;
 }

@@ -20,7 +20,7 @@
   LIBRARY_CLASS                  = Am335xLib 
 
 [Sources.common]
-  OmapLib.c
+  Am335xLib.c
 
 [Packages]
   MdePkg/MdePkg.dec

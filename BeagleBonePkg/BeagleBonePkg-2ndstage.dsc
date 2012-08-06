@@ -92,6 +92,7 @@
   TimerLib|Am335xPkg/Library/Am335xTimerLib/Am335xTimerLib.inf  
   EfiResetSystemLib|BeagleBonePkg/Library/ResetSystemLib/ResetSystemLib.inf
   RealTimeClockLib|Am335xPkg/Library/RealTimeClockLib/RealTimeClockLib.inf
+  Am335xLib|Am335xPkg/Library/Am335xLib/Am335xLib.inf
   ### BeagleBone Specific
 
   # EBL Related Libraries  
@@ -116,6 +117,7 @@
   DebugAgentTimerLib|Am335xPkg/Library/DebugAgentTimerLib/DebugAgentTimerLib.inf
   GdbSerialLib|Am335xPkg/Library/GdbSerialLib/GdbSerialLib.inf  
   # DebugAgentTimerLib|EmbeddedPkg/Library/DebugAgentTimerLibNull/DebugAgentTimerLibNull.inf
+  ### BeagleBone nice to have
 
   SemihostLib|ArmPkg/Library/SemihostLib/SemihostLib.inf  
 

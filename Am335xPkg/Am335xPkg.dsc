@@ -152,11 +152,11 @@
   gOmap35xxTokenSpaceGuid.PcdOmap35xxMMCHS1Base|0x48060100
 
   # Console  
-  gOmap35xxTokenSpaceGuid.PcdOmap35xxConsoleUart|0
+  gOmap35xxTokenSpaceGuid.PcdOmap35xxConsoleUart|1
   
   # Timers
-  gOmap35xxTokenSpaceGuid.PcdOmap35xxArchTimer|3
-  gOmap35xxTokenSpaceGuid.PcdOmap35xxFreeTimer|4
+  gOmap35xxTokenSpaceGuid.PcdOmap35xxArchTimer|2
+  gOmap35xxTokenSpaceGuid.PcdOmap35xxFreeTimer|3
   gEmbeddedTokenSpaceGuid.PcdTimerPeriod|100000
   gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterPeriodInNanoseconds|77
   gEmbeddedTokenSpaceGuid.PcdEmbeddedPerformanceCounterFrequencyInHz|13000000
